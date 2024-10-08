@@ -1,0 +1,141 @@
+{% extends "base.html" %}{% block title %}Job Information{% endblock %}{% block content  
+    %} 
+  <style>
+    .dropdown-options{
+      display: none;
+      position: absolute;
+      overflow: auto;
+    }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    width: 120px;
+    overflow: auto;
+    z-index: 4;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: white
+    
+    
+  }
+  .dropdown{
+    display: inline-block;
+    position: relative;
+  }
+  .dropdown::selection .dropdown-options{
+      display: block;
+  }
+  .test:after {
+      content: '\2807';
+      font-size: 25px;
+    }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  #SN{ 
+      position:relative; 
+      display: inline-block;
+      top:50%; 
+      left:45%; 
+      width:150px; 
+  
+  }
+  
+  
+  .dropdown-content a {
+    display: block;
+    color: #000000;
+    padding: 5px;
+    text-decoration: none;
+  }
+  
+  </style>
+  
+  <br />
+      <h3 text-align="center">Job Information</h3>
+      <divlass="container">
+        <form method="POST">
+        </form>
+      </div>  
+  <br />
+    <div class="table-responsive">
+     <table id="data" class="table table-striped" id="SN">    
+      <thead>
+        <tr>
+          <th>Organization</th>
+          <th>Email</th>
+          <th>Role</th> 
+          <th>Approver</th>
+          <th>Date</th>
+          <th>Hours</th>
+          <th>Description</th>
+          <th>Options</th>
+          
+        </tr> 
+      </thead>
+      <tbody> 
+        {% for job in jobs.items %}          
+        <tr>
+          <td><a style="color:black;">{{ job.org_name }}</a></td>
+          <td><a style="color:black;">{{ job.org_email }}</a></td>
+          <td><a style="color:black;">{{ job.role }}</a></td>
+          <td><a style="color:black;">{{ job.approver }}</a></td>
+          <td><a style="color:black;">{{ job.date.strftime('%m/%d/%Y') }}</a></td>
+          <td><a style="color:black;">{{ "%.1f"|format(job.hours) }}</a></td>
+          <td><a style="color:black;">{{ job.description }}</a></td>
+          <td text-align="center">
+            <div class="dropdown">
+              <button class="btn btn secondary"><div class="test"></div></button>
+              <div class="dropdown-content">
+                <a href="{{url_for('views.update_job')}}?jobid={{job.job_seq}}">Update</a>
+                <a href="{{url_for('views.attach_job')}}?jobid={{job.job_seq}}">Upload Document</a>
+                <a href="{{url_for('views.delete_job')}}?jobid={{job.job_seq}}">Delete</a>
+              </div>
+            </div>
+          </td>
+  
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <!-- Pagination Links-->
+  <div class="text-right">
+    <a href="{{ url_for('views.job', page=jobs.prev_num) }}"
+       class="btn btn-outline-dark 
+       {% if jobs.page == 1 %}disabled{% endif %}">
+        &laquo;
+    </af>
+  
+    {% for page_num in jobs.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+  {% if page_num %}
+  
+            {% if jobs.page == page_num %}
+            <a href="{{ url_for('views.job', page=page_num) }}"
+               class="btn btn-dark">
+                {{ page_num }}
+            </a>
+            {% else %}
+            <a href="{{ url_for('views.job', page=page_num) }}"
+               class="btn btn-outline-dark">
+                {{ page_num }}
+            </a>
+            {% endif %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+    <a href="{{ url_for('views.job', page=jobs.next_num) }}"
+       class="btn btn-outline-dark 
+       {% if jobs.page == jobs.pages %}disabled{% endif %}">
+        &raquo;
+    </a> 
+   </div>
+  <p class="text-right mt-3">
+   
+   Showing page {{ jobs.page }} of {{ jobs.pages }}
+  </p>
+  
+  </div>
+  <a href="{{url_for('views.add_job')}}" class ="btn btn-primary" id="SN">Add Job</a>
+  {% endblock %}

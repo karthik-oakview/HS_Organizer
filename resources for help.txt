@@ -1,0 +1,1 @@
+https://thomasgauvin.com/blog/build-a-photos-application-with-azure-blob-storage

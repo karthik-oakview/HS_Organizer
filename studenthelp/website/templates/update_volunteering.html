@@ -1,0 +1,85 @@
+{% extends "base.html" %} {% block title %}Update Volunteering{% endblock %} {% block content %}
+
+<br />    
+    <form method="POST">
+        <h3 align="center">
+            Update Volunteering Details
+        </h3>
+        <div class="form-group">
+            <label for="orgName">Organization Name:</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                name="orgName" 
+                value="{{volunteering.org_name}}"
+            />
+        </div>
+        <div class="form-group">
+            <label for="orgEmail">Organization Email:</label>
+            <input 
+                type="email" 
+                class="form-control" 
+                name="orgEmail" 
+                value="{{volunteering.org_email}}"
+            />
+        </div>
+        <div class="form-group">
+            <label for="hours">Hours Volunteered:</label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="hours" 
+                name="hours" 
+                placeholder="Enter Hours"
+                value="{{"%.1f"|format(volunteering.hours)}}"
+            />
+        </div>
+        <div class="form-group">
+            <label for="activity">Activity:</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="activity" 
+                name="activity" 
+                placeholder="Enter Activity"
+                value="{{volunteering.activity}}"
+            />
+        </div>
+        <div class="form-group">
+            <label for="approver">Approver:</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="approver" 
+                name="approver" 
+                placeholder="Enter Approver"
+                value="{{volunteering.approver}}"
+            />
+        </div>
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input 
+                type="date" 
+                class="form-control" 
+                id="date" 
+                name="date" 
+                placeholder="Enter date"
+                value="{{volunteering.date}}"
+            />
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="description" 
+                name="description" 
+                placeholder="Enter description"
+                value="{{volunteering.description}}"
+            />
+        </div>
+      
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% endblock %}
+    

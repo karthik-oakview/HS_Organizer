@@ -1,0 +1,87 @@
+{% extends "base.html" %} {% block title %}Add Payment{% endblock %}{% block content
+    %} 
+
+<br />
+<form method="POST">
+    <h3 text-align="center">Add A HighSchool Credit </h3>
+    <br />
+    <div class="form-group">
+    <label for="courseName">Course Name:</label>
+    <input 
+        type="text" 
+        class="form-control" 
+        id="courseName"
+        name="courseName" 
+        placeholder="Enter course"
+    />
+<br />
+    <div class="form-group">
+        <label for="creditUnit">Credit Unit(0.5 or 1):</label>
+        <input 
+            type="number" 
+            class="form-control" 
+            id="creditUnit" 
+            name="creditUnit" 
+            step="any" 
+            placeholder="Enter unit"
+        />
+    <br />
+    <div class="form-group">
+            <label for="weightage">Weightage:</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="weightage" 
+                name="weightage" 
+                placeholder="Enter Weightage"
+        />
+    <br />
+    <div class="form-group">
+        <label for="provider">Provider(School, College, etc..):</label>
+        <input
+            type="text"
+            step="any" 
+            class="form-control" 
+            id="provider" 
+            name="provider" 
+            placeholder="Enter provider"  
+        />
+    <br />
+    <div class="form-group">
+        <label for="classification">Classification(Math, Foriegn Language, etc..):</label>
+        <input
+            type="text"
+            step="any" 
+            class="form-control" 
+            id="classification" 
+            name="classification" 
+            placeholder="Enter Classification"  
+        />
+    <br />
+    <div class="form-group">
+        <label for="score">Score(Number):</label>
+        <input
+            type="number"
+            step="any" 
+            class="form-control" 
+            id="score" 
+            name="score" 
+            step="any" 
+            placeholder="Enter score"  
+        />
+    <br />
+    <div class="form-group">
+        <label for="grade">Grade(letter):</label>
+        <input
+            type="text"   
+            step="any" 
+            class="form-control" 
+            id="grade" 
+            name="grade" 
+            placeholder="Enter grade"  
+        />
+    <br />
+</form>
+<button type="submit" class="btn btn-primary">Add Credit</button>
+
+{% endblock %}

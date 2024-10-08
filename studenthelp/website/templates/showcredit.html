@@ -1,0 +1,133 @@
+{% extends "base.html" %} {% block title %}Credits{% endblock %} {% block content
+    %}
+<style>
+.dropdown-options{
+    display: none;
+    position: absolute;
+    overflow: auto;
+  }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  width: 120px;
+  overflow: auto;
+  z-index: 4;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  background-color: white
+  
+  
+}
+.dropdown{
+  display: inline-block;
+  position: relative;
+}
+.dropdown::selection .dropdown-options{
+    display: block;
+}
+.test:after {
+    content: '\2807';
+    font-size: 25px;
+  }
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+#SN{ 
+    position:relative; 
+    display: inline-block;
+    top:50%; 
+    left:45%; 
+    width:150px; 
+
+}
+
+
+.dropdown-content a {
+  display: block;
+  color: #000000;
+  padding: 5px;
+  text-decoration: none;
+}
+</style>
+<br />
+
+     
+    <form method="POST">
+        <h3>High School Credits</h3>
+        <br />
+        <div class="table-responsive">
+        <table id="data" class="table table-striped">    
+          <thead>
+            <tr>
+              <th>Course Name</th>
+              <th>Credit Unit</th>
+              <th>Weightage</th>
+              <th>Provider</th>
+              <th>Classification</th>
+              <th>Score</th>
+              <th>Grade</th>
+              <th>Options</th>
+            </tr> 
+          </thead>
+          <tbody> 
+            {% for credit in credits.items %}
+            <tr>
+              <td>{{ credit.course_name }}</td>
+              <td>{{ "%.1f"|format(credit.credit_unit) }}</td>
+              <td>{{ credit.weightage }}</td>
+              <td>{{ credit.provider }}</td>
+              <td>{{ credit.classification }}</td>
+              <td>{{ "%.1f"|format(credit.score) }}</td>
+              <td>{{ credit.grade }}</td>
+              <td text-align="center">
+                <div class="dropdown">
+                  <button class="btn btn secondary"><div class="test"></div></button>
+                  <div class="dropdown-content">
+                    <a href="{{url_for('views.update_credit')}}?creditid={{credit.creditid}}">Update</a>
+                    <a href="{{url_for('views.attach_credit')}}?creditid={{credit.creditid}}">Upload Document</a>
+                    <a href="{{url_for('views.delete_credit')}}?creditid={{credit.creditid}}">Delete</a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+           </tbody>
+          
+        </table>
+<div class="text-right">
+    <a href="{{ url_for('views.showcredit', page=credits.prev_num)}}"
+        class="btn btn-outline-dark 
+        {% if credits.page == 1 %}disabled{% endif %}">
+        &laquo;
+    </a>
+    {% for page_num in credits.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+{% if page_num %} 
+             {% if credits.page == page_num %}
+            <a href="{{ url_for('views.showcredit', page=page_num) }}"text-align="right"
+                class="btn btn-dark">
+                {{ page_num }}
+            </a>
+            {% else %}
+            <a href="{{ url_for('views.showcredit', page=page_num) }}"text-align="right"
+                class="btn btn-outline-dark">
+                {{ page_num }}
+            </a>
+            {% endif %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+    <a href="{{ url_for('views.showcredit', page=credits.next_num) }}" text-align="right"
+        class="btn btn-outline-dark 
+        {% if credits.page == credits.pages %}disabled{% endif %}">
+        &raquo;
+    </a>
+</div>
+<p class="text-right mt-3">
+Showing page {{ credits.page }} of {{ credits.pages }}
+</p>
+    </div>
+</form>
+<a href="{{url_for('views.addcredit')}}" class ="btn btn-primary" id="SN">Add Credit</a>
+{% endblock %}      

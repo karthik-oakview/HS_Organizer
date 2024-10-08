@@ -1,0 +1,93 @@
+{% extends "base.html" %} {% block title %}Update HighSchool Credit{% endblock %}{% block content
+    %} 
+
+<br />
+<form method="POST">
+    <h3 text-align="center">Update HighSchool Credit </h3>
+    <br />
+    <div class="form-group">
+    <label for="courseName">Course Name:</label>
+    <input 
+        type="text" 
+        class="form-control" 
+        id="courseName"
+        name="courseName" 
+        placeholder="Enter course"
+        value="{{credit.course_name}}"
+    />
+<br />
+    <div class="form-group">
+        <label for="creditUnit">Credit Unit(0.5 or 1):</label>
+        <input 
+            type="number" 
+            class="form-control" 
+            step="any" 
+            id="creditUnit" 
+            name="creditUnit" 
+            placeholder="Enter unit"
+            value="{{"%.1f"|format(credit.credit_unit)}}"
+        />
+    <br />
+    <div class="form-group">
+            <label for="weightage">Weightage:</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="weightage" 
+                name="weightage" 
+                placeholder="Enter Weightage"
+                value="{{credit.weightage}}"
+        />
+    <br />
+    <div class="form-group">
+        <label for="provider">Provider(School, College, etc..):</label>
+        <input
+            type="text"
+            step="any" 
+            class="form-control" 
+            id="provider" 
+            name="provider" 
+            placeholder="Enter provider"  
+            value="{{credit.provider}}"
+        />
+    <br />
+    <div class="form-group">
+        <label for="classification">Classification(Math, Foriegn Language, etc..):</label>
+        <input
+            type="text"
+            step="any" 
+            class="form-control" 
+            id="classification" 
+            name="classification" 
+            placeholder="Enter Classification"  
+            value="{{credit.classification}}"
+        />
+    <br />
+    <div class="form-group">
+        <label for="score">Score(Number):</label>
+        <input
+            type="number"
+            step="any" 
+            class="score" 
+            id="score" 
+            name="score" 
+            placeholder="Enter score" 
+            value="{{"%.1f"|format(credit.score)}}"
+        />
+    <br />
+    <div class="form-group">
+        <label for="grade">Grade(letter):</label>
+        <input
+            type="text"   
+            step="any" 
+            class="form-control" 
+            id="grade" 
+            name="grade" 
+            placeholder="Enter grade"  
+            value="{{credit.grade}}"
+        />
+    <br />
+</form>
+<button type="submit" class="btn btn-primary">Update Credit</button>
+
+{% endblock %}

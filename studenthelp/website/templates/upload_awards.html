@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title %}Upload Document for Awards{% endblock %} {% block content %}
+<br />
+<h2><center>Upload your Document for Awards</center></h2>  
+<br />
+<br />
+<center>
+<br />
+        <form method="post" action="/attach-award?awardid={{awardid}}"
+            enctype="multipart/form-data">  
+            <input type="file" name="document" >  
+            <input type="submit" id = "Upload" value = "Upload">  
+        
+     <br />
+    <br />
+    <br />
+</center>
+    {% if blob_url_with_blob_sas_token !='' %}
+        
+    <center>
+        <button class="btn btn-primary"><a class="btn-btn-primary"href="{{blob_url_with_blob_sas_token}}" style="color: aliceblue;">View Uploaded Document</a></button>
+        <button name = "Delete" type="submit" value = "Delete"  id = "Delete" class="btn btn-primary">Delete Uploaded Document</button>
+    </center>
+    {% endif %}    
+      
+</form>  
+
+{% endblock %}

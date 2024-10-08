@@ -1,0 +1,62 @@
+{% extends "base.html" %} {% block title %}Add Student{% endblock %}Add Student{% block content %}
+<br />    
+    <form method="POST">
+        <h3 align="center">
+            Add Awards and Honors
+        </h3>
+        <div class="form-group">
+            <label for="orgName">Organization Name:</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="orgName" 
+                name="orgName" 
+                placeholder="Enter Organization"
+            />
+        </div>
+        <div class="form-group">
+            <label for="honorName">Award/Honor name:</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="honorName" 
+                name="honorName" 
+                placeholder="Enter name"
+            />
+        </div>
+        <div class="form-group">
+            <label for="receivedDate">Date received:</label>
+            <input 
+                type="date" 
+                class="form-control" 
+                id="receivedDate" 
+                name="receivedDate" 
+                placeholder="Enter date"
+            />
+        </div>
+        <div class="form-group">
+            <label for="level">Level(Regionals, State, National, etc...):</label>
+               <select name="level" id="level" class="form-control" > 
+                <option value="School">School</option>
+                <option value="Regional">Regional</option>
+                <option value="State">State</option>
+                <option value="National">National</option>
+                <option value="International">International</option>
+              </select>
+
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="description" 
+                name="description" 
+                placeholder="Enter description"
+            />
+        </div>
+      
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% endblock %}
+    
